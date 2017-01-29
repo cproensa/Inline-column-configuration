@@ -21,20 +21,11 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
         $this->name = plugin_lang_get("title");
         $this->description = plugin_lang_get("description");
 
-        $this->version = "2.0";
-
-		if( version_compare( MANTIS_VERSION, '1.3', '<') ) {
-			# this is version 1.2.x
-			$this->requires = array(
-				"MantisCore" => "1.2.6",
+        $this->version = "2.1";
+		$this->requires = array(
+				"MantisCore" => "2.1",
 				"jQueryUI" => "1.8"
 			);
-		} else {
-			# this is version 1.3.x
-			$this->requires = array(
-				"MantisCore" => "1.3"
-			);
-		}
 
         $this->author = "Robert Munteanu, Carlos Proensa";
         $this->contact = "robert@lmn.ro";
@@ -72,10 +63,12 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
 		}
 		$t_token = form_security_token( 'ajax_form' );
 		$t_url = plugin_page( 'ajax_form' ) . '&project_id=' . helper_get_current_project() . '&ajax_form_token=' . $t_token;
-		$t_link = '<a href="account_manage_columns_page.php" data-remote="' . $t_url . '" class="columns_form_trigger">'
+		$t_html = '<a class="btn btn-primary btn-white btn-round btn-sm columns_form_trigger"'
+				. ' href="account_manage_columns_page.php"'
+				. ' data-remote="' . $t_url . '">'
 				. plugin_lang_get( 'configure_columns' )
 				. '</a>';
-        return $t_link;
+        return $t_html;
     }
     
     public function add_columns_dialog() {
