@@ -17,6 +17,8 @@
 
 class InlineColumnConfigurationPlugin extends MantisPlugin {
     
+    private $scripts;
+
     public function register() {
         $this->name = plugin_lang_get("title");
         $this->description = plugin_lang_get("description");
