@@ -14,12 +14,12 @@ if( $ok && !@form_security_validate( 'ajax_form' ) ) {
 	$error_msg = 'Form has expired, reload';
 }
 
-$f_project_id = @gpc_get( 'project_id', null );
+$f_project_id = @gpc_get_int( 'project_id', -1 );
 $f_target = @gpc_get( 'target', null );
 $f_columns = @gpc_get_string_array( 'columns', array() );
 
 
-if( $ok && ( null === $f_project_id || null === $f_target ) ) {
+if( $ok && ( -1 == $f_project_id || null === $f_target ) ) {
 		$ok = false;
 	$error_msg = 'Missing parameters';
 }
